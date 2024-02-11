@@ -7,12 +7,13 @@ import {
 import { authenticate } from "../middlewares/authenticate.js";
 import { createContactSchema } from "../schemas/contactsSchemas.js";
 import validateBody from "../helpers/validateBody.js";
+import isValidId from "../middlewares/isValidId.js";
 
 const contactsRouter = express.Router();
 
 contactsRouter.get("/", authenticate, getAllContacts);
 
-contactsRouter.delete("/:contactId", deleteContact);
+contactsRouter.delete("/:contactId", isValidId, deleteContact);
 
 contactsRouter.post(
 	"/",

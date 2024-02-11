@@ -12,7 +12,18 @@ export const getAllContacts = async (req, res) => {
 	}
 };
 
-export const deleteContact = (req, res) => {};
+export const deleteContact = async (req, res) => {
+	const { _id: owner } = req.user;
+	const { contactId } = req.params;
+
+	const result = await Contact.findOneAndRemove({ owner, _id: contactId });
+	if (!result) {
+		throw HttpError(404, "Not found");
+	}
+	res.status(200).json({
+		message: "Contact deleted",
+	});
+};
 
 export const createContact = async (req, res) => {
 	try {
