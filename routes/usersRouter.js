@@ -9,7 +9,7 @@ import {
 import validateBody from "../helpers/validateBody.js";
 import { loginSchema, registerSchema } from "../schemas/userSchemas.js";
 import { authenticate } from "../middlewares/authenticate.js";
-import { upload } from "../middlewares/upload.js";
+import { storage } from "../middlewares/upload.js";
 
 export const usersRouter = express.Router();
 
@@ -24,6 +24,6 @@ usersRouter.post("/logout", authenticate, logout);
 usersRouter.patch(
   "/avatar",
   authenticate,
-  upload.single("avatar"),
+  storage.single("avatar"),
   updateAvatar
 );
