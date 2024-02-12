@@ -13,7 +13,7 @@ const contactsRouter = express.Router();
 
 contactsRouter.get("/", authenticate, getAllContacts);
 
-contactsRouter.delete("/:contactId", isValidId, deleteContact);
+contactsRouter.delete("/:contactId", authenticate, isValidId, deleteContact);
 
 contactsRouter.post(
 	"/",

@@ -1,6 +1,7 @@
 // import contactsService from "../services/contactsServices.js";
 
 import { Contact } from "../db/models/Contact.js";
+import HttpError from "../helpers/HttpError.js";
 
 export const getAllContacts = async (req, res) => {
 	try {
@@ -16,7 +17,7 @@ export const deleteContact = async (req, res) => {
 	const { _id: owner } = req.user;
 	const { contactId } = req.params;
 
-	const result = await Contact.findOneAndRemove({ owner, _id: contactId });
+	const result = await Contact.findOneAndDelete({ owner, _id: contactId });
 	if (!result) {
 		throw HttpError(404, "Not found");
 	}
