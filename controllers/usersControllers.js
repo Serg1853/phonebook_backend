@@ -61,7 +61,7 @@ export const login = async (req, res, next) => {
       user: {
         name: user.name,
         email,
-        avatarURL: user.avatarURL,
+        avatarURL: user.avatar,
       },
     });
   } catch (error) {
@@ -70,7 +70,7 @@ export const login = async (req, res, next) => {
 };
 
 export const getCurrent = (req, res) => {
-  const { email, name, avatarURL } = req.user;
+  const { email, name, avatar: avatarURL } = req.user;
   res.status(200).json({ email, name, avatarURL });
 };
 
